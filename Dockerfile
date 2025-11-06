@@ -6,7 +6,6 @@ WORKDIR /source
 COPY *.csproj ./
 RUN dotnet restore
 
-
 COPY . ./
 RUN dotnet publish -c Release -o /app --no-restore
 
@@ -17,11 +16,10 @@ WORKDIR /app
 
 COPY --from=build /app ./
 
-le
+
 ENV ASPNETCORE_URLS=http://0.0.0.0:${PORT}
 
 EXPOSE ${PORT}
 
-ENTRYPOINT ["dotnet", "ImposterGame.dll"]
-```
 
+ENTRYPOINT ["dotnet", "ImposterGame.dll"]
