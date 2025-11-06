@@ -69,8 +69,11 @@ A social deduction web game built with ASP.NET Core MVC where players try to ide
    ```
    https://localhost:5001
    ```
-
-   
+5. OR Visit this link: 
+    ```
+    https://impostergame-5jpc.onrender.com
+   ```
+   You need to wait up to 50 seconds.
 
 ## How to Play
 
