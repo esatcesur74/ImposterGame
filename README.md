@@ -1,4 +1,3 @@
-# ImposterGame
 
 # Imposter Game
 
@@ -152,14 +151,9 @@ This project is open source and available under the MIT License.
 
 ## Acknowledgments
 
-- Inspired by social deduction games like Among Us and The Resistance
 - Avatar generation powered by [DiceBear Avatars](https://dicebear.com/)
 - React for dynamic UI components
 
-## Contact
 
-For questions or feedback, please open an issue on GitHub.
 
----
-
-**Enjoy playing Imposter Game!** 🎮
+**Enjoy playing Imposter Game!** 
