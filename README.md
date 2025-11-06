@@ -141,9 +141,6 @@ Each game uses one of three topics:
 - **Jobs**: Common professions and occupations
 - **Countries**: Countries from different continents
 
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
