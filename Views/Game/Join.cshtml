@@ -1,0 +1,59 @@
+@model ImposterGame.ViewModels.JoinViewModel
+@{
+    ViewData["Title"] = "Join Game";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/game.css">
+</head>
+
+<body class="tactical-body">
+    <div class="container tactical-container">
+        <div class="game-header">
+            <h1 class="game-title">🎮 JOIN GAME</h1>
+            <div class="game-subtitle">ENTER NICKNAME</div>
+        </div>
+
+        @if (Model.ErrorMessage != null)
+        {
+            
+            <div class="alert-error"
+                style="margin: 20px 0; padding: 20px; background: rgba(255, 0, 0, 0.2); border: 2px solid #ff0040; border-radius: 8px; color: #ff0040;">
+                <h3>UNABLE TO JOIN</h3>
+                <p>@Model.ErrorMessage</p>
+                <a href="/Game/New" class="btn-neon" style="display: inline-block; margin-top: 10px;">
+                    <span>← BACK TO HOME</span>
+                </a>
+            </div>
+        }
+        else
+        {
+           
+            <div class="tactical-card">
+                <form asp-action="JoinRemote" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@Model.GameId" />
+
+                    <div class="input-group" style="margin: 20px 0;">
+                        <label for="playerName" style="display: block; margin-bottom: 10px; color: #00ffff;">YOUR NAME:</label>
+                        <input type="text" name="playerName" id="playerName" class="cyber-input"
+                            placeholder="Type your name..." required autofocus
+                            style="width: 100%; padding: 12px; font-size: 18px;" />
+                    </div>
+
+                    <button type="submit" class="btn-neon btn-neon-primary" style="width: 100%; margin-top: 20px;">
+                        <span> JOIN LOBBY</span>
+                    </button>
+                </form>
+            </div>
+        }
+    </div>
+</body>
+
+</html>

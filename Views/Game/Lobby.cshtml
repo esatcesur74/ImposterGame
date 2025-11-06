@@ -1,0 +1,259 @@
+@model ImposterGame.ViewModels.LobbyViewModel
+
+@{
+    ViewData["Title"] = "Game Lobby";
+}
+
+<div class="game-container">
+    <div class="cyber-card newspaper-lobby">
+        
+        <div class="newspaper-masthead">
+            <div class="newspaper-date">BREAKING NEWS - SEASON 2025</div>
+            <h1 class="newspaper-headline">IMPOSTER AMONG US</h1>
+            <div class="newspaper-subheadline">
+                @Model.Players.Count SUSPECT@(Model.Players.Count != 1 ? "S" : "") IDENTIFIED IN ONGOING INVESTIGATION
+            </div>
+        </div>
+
+        @if (TempData["Error"] is string err)
+        {
+            <div class="alert-error">
+                @err
+            </div>
+        }
+
+        
+        <form style="display: none;">
+            @Html.AntiForgeryToken()
+        </form>
+
+        
+        <div class="newspaper-article">
+            <div class="article-header">
+                <h2 class="section-headline">SUSPECT ROSTER</h2>
+                <div class="headline-underline"></div>
+            </div>
+
+            
+            <div id="player-list-container" class="suspect-grid"></div>
+        </div>
+
+        
+        @if (Model.Mode == GameMode.Local)
+        {
+            <div class="newspaper-classified">
+                <div class="classified-header">ADD PLAYER</div>
+                <form method="post" asp-action="AddPlayer" asp-route-id="@Model.GameId" class="classified-form">
+                    @Html.AntiForgeryToken()
+                    <input type="text" id="displayName" name="displayName"
+                           class="newspaper-input" placeholder="Player name" required />
+                    <button type="submit" class="btn-newspaper btn-newspaper-primary">
+                        Add
+                    </button>
+                </form>
+            </div>
+        }
+        
+@if (Model.IsHost && Model.Status == GameStatus.Lobby)
+{
+    <div class="newspaper-classified">
+        <div class="classified-header">GAME CONFIGURATION</div>
+        
+        
+        <div class="config-section">
+            <label class="config-label">SELECT TOPIC:</label>
+            <div class="topic-buttons">
+                <form method="post" asp-action="UpdateTopic" asp-route-id="@Model.GameId" asp-route-topic="FootballPlayers" style="display: inline;">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn-topic @(Model.SelectedTopic == Topic.FootballPlayers ? "active" : "")">
+                        Football Players
+                    </button>
+                </form>
+                <form method="post" asp-action="UpdateTopic" asp-route-id="@Model.GameId" asp-route-topic="Jobs" style="display: inline;">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn-topic @(Model.SelectedTopic == Topic.Jobs ? "active" : "")">
+                        Jobs
+                    </button>
+                </form>
+                <form method="post" asp-action="UpdateTopic" asp-route-id="@Model.GameId" asp-route-topic="Countries" style="display: inline;">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn-topic @(Model.SelectedTopic == Topic.Countries ? "active" : "")">
+                        Countries
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        
+        <div class="config-section">
+            <label class="config-label">GAME MODE:</label>
+            <div class="mode-buttons">
+                <button class="btn-mode active" disabled>
+                    Vanilla Imposter Game
+                </button>
+                <button class="btn-mode disabled-mode" disabled>
+                    Question Imposter Game
+                    <span class="coming-soon-badge">COMING SOON</span>
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+        
+        <div class="newspaper-actions">
+            @if (Model.Status != GameStatus.Started)
+            {
+                @if (Model.IsHost)
+                {
+                    <div class="lobby-action-buttons">
+                        <a asp-action="New" class="btn-newspaper btn-wanted btn-medium">
+                            ← BACK TO MENU
+                        </a>
+                        <form method="post" asp-action="StartGame" asp-route-id="@Model.GameId" class="action-form">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn-newspaper btn-wanted btn-xlarge"
+                                    @(Model.Players.Count < 3 ? "disabled" : "")>
+                                START GAME
+                                @if (Model.Players.Count < 3)
+                                {
+                                    <small class="btn-requirement">Need 3 players</small>
+                                }
+                            </button>
+                        </form>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="lobby-action-buttons">
+                    <a asp-action="New" class="btn-newspaper btn-wanted btn-medium">
+                        ← BACK TO MENU
+                    </a>
+                    <a asp-action="Play" asp-route-id="@Model.GameId" class="btn-newspaper btn-wanted btn-xlarge">
+                        Continue
+                    </a>
+                </div>
+            }
+        </div>
+
+        
+        @if (Model.Mode == GameMode.Remote)
+        {
+            <div class="newspaper-notice">
+                <div class="notice-header">INVITE PLAYERS</div>
+                <div class="notice-content">
+                    <div class="tip-line">
+                        <label class="tip-label">Link</label>
+
+                        <div class="tip-input-group">
+                            <input type="text" id="gameLink" value="@Model.SharableLink" readonly class="newspaper-input" />
+                            <button type="button" class="btn-newspaper" onclick="copyGameLink()">
+                                Copy
+                            </button>
+                        </div>
+                    </div>
+                    <div class="tip-line">
+                        <label class="tip-label">Code</label>
+                        <div class="tip-input-group">
+                            <input type="text" id="gameId" value="@Model.ShortCode?.ToUpper()" readonly class="newspaper-input" />
+                            <button type="button" class="btn-newspaper" onclick="copyGameId()">
+                                Copy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script>
+console.log('Starting React component script...');
+const { useState, useEffect, createElement: h } = React;
+
+function LobbyPlayers({ gameId, initialIsHost, antiForgeryToken, initialStatus }) {
+    const [players, setPlayers] = useState([]);
+    const [playerCount, setPlayerCount] = useState(0);
+    const [isHost, setIsHost] = useState(initialIsHost);
+    const [previousStatus, setPreviousStatus] = useState(initialStatus);
+
+    const fetchLobbyData = async () => {
+    try {
+        console.log('Fetching lobby data for game:', gameId);
+        const response = await fetch(`/Game/GetLobbyData?id=${gameId}`);
+        const data = await response.json();
+        console.log('Received data:', data);
+
+        if (data.success) {
+            console.log('Setting players:', data.players);
+            setPlayers(data.players);
+            setPlayerCount(data.playerCount);
+            setIsHost(data.isHost);
+
+            // Only redirect if status CHANGED from Lobby to Started
+            if (data.status === 'Started' && previousStatus !== 'Started') {
+                window.location.href = `/Game/Play/${gameId}`;
+            }
+            setPreviousStatus(data.status);
+        } else {
+            console.error('API returned success: false', data);
+        }
+    } catch (error) {
+        console.error('Error fetching lobby data:', error);
+    }
+};
+
+    useEffect(() => {
+        fetchLobbyData();
+        const interval = setInterval(fetchLobbyData, 3000);
+        return () => clearInterval(interval);
+    }, [gameId]);
+
+    return h(React.Fragment, null,
+        players.map((player, index) => {
+            const avatarUrl = `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(player.displayName)}&backgroundColor=cccccc`;
+            return h('div', { key: player.id, className: 'suspect-card' },
+                h('div', { className: 'suspect-number' }, `SUSPECT #${index + 1}`),
+                h('div', { className: 'mugshot-frame' },
+                    h('img', {
+                        src: avatarUrl,
+                        alt: player.displayName,
+                        className: 'mugshot-photo'
+                    })
+                ),
+                h('div', { className: 'suspect-info' },
+                    h('div', { className: 'suspect-name' }, player.displayName.toUpperCase()),
+                    h('div', { className: 'suspect-status' }, 'AT LARGE')
+                ),
+                isHost ? h('form', {
+                    method: 'post',
+                    action: '/Game/RemovePlayer',
+                    className: 'suspect-remove-form'
+                },
+                    h('input', { type: 'hidden', name: '__RequestVerificationToken', value: antiForgeryToken }),
+                    h('input', { type: 'hidden', name: 'id', value: gameId }),
+                    h('input', { type: 'hidden', name: 'playerId', value: player.id }),
+                    h('button', { type: 'submit', className: 'btn-remove-suspect' }, '×')
+                ) : null
+            );
+        })
+    );
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('player-list-container');
+    const gameId = '@Model.GameId';
+    const initialIsHost = @Json.Serialize(Model.IsHost);
+    const initialStatus = '@Model.Status.ToString()';
+    const tokenElement = document.querySelector('input[name="__RequestVerificationToken"]');
+    const antiForgeryToken = tokenElement ? tokenElement.value : '';
+
+    const root = ReactDOM.createRoot(container);
+    root.render(h(LobbyPlayers, { gameId: gameId, initialIsHost: initialIsHost, antiForgeryToken: antiForgeryToken, initialStatus: initialStatus }));
+});
+</script>
+
+<script src="~/js/new.js" asp-append-version="true"></script>

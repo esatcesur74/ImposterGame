@@ -1,0 +1,884 @@
+.lobby-action-buttons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.lobby-action-buttons .action-form {
+    margin: 0;
+}
+
+.lobby-action-buttons .btn-wanted {
+    background: var(--retro-orange) !important;
+    color: var(--newspaper-black) !important;
+    display: inline-block !important;
+    text-decoration: none !important;
+}
+
+.lobby-action-buttons .btn-wanted:hover {
+    background: var(--newspaper-yellow) !important;
+    color: var(--newspaper-black) !important;
+}
+
+.lobby-action-buttons .btn-wanted[disabled] {
+    background: #888 !important;
+    color: #555 !important;
+    cursor: not-allowed !important;
+}
+
+.lobby-action-buttons .btn-wanted[disabled]:hover {
+    background: #888 !important;
+    color: #555 !important;
+    transform: none !important;
+}
+
+.btn-medium {
+    font-size: 1.4rem !important;
+    padding: 14px 30px !important;
+}
+
+.btn-xlarge {
+    font-size: 2rem !important;
+    padding: 20px 50px !important;
+}
+
+.remote-form {
+    margin-top: 30px;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 4px solid var(--newspaper-yellow);
+    border-radius: 8px;
+}
+
+.remote-form h3 {
+    color: var(--newspaper-yellow);
+    font-size: 1.8rem;
+    font-weight: 900;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.config-section {
+    margin-bottom: 24px;
+}
+
+.config-label {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+    color: var(--newspaper-black);
+    text-transform: uppercase;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+}
+
+.topic-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-topic {
+    padding: 14px 28px;
+    border: 4px solid var(--newspaper-black);
+    background: var(--retro-orange);
+    color: var(--newspaper-black);
+    font-weight: 900;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    letter-spacing: 2px;
+}
+
+.btn-topic:hover {
+    background: var(--newspaper-yellow);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 0 var(--newspaper-black);
+}
+
+.btn-topic.active {
+    background: var(--newspaper-yellow);
+    border-color: var(--newspaper-black);
+    box-shadow: inset 0 0 0 3px var(--retro-orange);
+}
+
+.mode-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-mode {
+    padding: 14px 28px;
+    border: 4px solid var(--newspaper-black);
+    background: var(--retro-green);
+    color: var(--newspaper-black);
+    font-weight: 900;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.btn-mode.active {
+    background: var(--retro-green);
+    box-shadow: inset 0 0 0 3px var(--newspaper-yellow);
+}
+
+.btn-mode.disabled-mode {
+    background: #888;
+    color: #444;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.coming-soon-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--retro-red);
+    color: white;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 900;
+    border: 3px solid var(--newspaper-black);
+    border-radius: 0;
+}
+
+.suspect-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 20px !important;
+    overflow-x: visible !important;
+    justify-content: center !important;
+}
+
+.newspaper-classified {
+    background: rgba(255, 215, 0, 0.1) !important;
+    border: 4px solid var(--newspaper-black) !important;
+    padding: 30px !important;
+    margin: 40px 0 !important;
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2) !important;
+}
+
+.classified-header {
+    background: var(--newspaper-yellow) !important;
+    padding: 15px 20px !important;
+    margin: -30px -30px 25px -30px !important;
+    border-bottom: 4px solid var(--newspaper-black) !important;
+}
+
+.classified-form {
+    display: flex !important;
+    gap: 15px !important;
+    align-items: stretch !important;
+}
+
+.classified-form .newspaper-input {
+    flex: 1 !important;
+    padding: 14px 18px !important;
+    font-size: 1.1rem !important;
+    font-weight: bold !important;
+    border: 3px solid var(--newspaper-black) !important;
+}
+
+.classified-form .btn-newspaper {
+    padding: 14px 30px !important;
+    font-size: 1.2rem !important;
+    white-space: nowrap !important;
+}
+
+.newspaper-actions {
+    margin-top: 50px !important;
+    clear: both !important;
+}
+
+.newspaper-masthead {
+    margin-bottom: 60px !important;
+}
+
+.newspaper-article {
+    margin-top: 50px !important;
+}
+
+.section-headline {
+    margin-top: 40px !important;
+}
+
+.newspaper-metadata {
+    gap: 60px !important;
+    margin-bottom: 50px !important;
+}
+
+.metadata-item {
+    padding: 12px 20px !important;
+    font-size: 1rem !important;
+}
+
+.newspaper-notice {
+    background: rgba(255, 215, 0, 0.1) !important;
+    border: 4px solid var(--newspaper-black) !important;
+    padding: 30px !important;
+    margin: 40px 0 !important;
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2) !important;
+}
+
+.notice-header {
+    background: var(--newspaper-yellow) !important;
+    padding: 15px 20px !important;
+    margin: -30px -30px 25px -30px !important;
+    border-bottom: 4px solid var(--newspaper-black) !important;
+}
+
+.notice-content {
+    gap: 25px !important;
+}
+
+.tip-line {
+    gap: 12px !important;
+}
+
+.tip-label {
+    font-size: 1.2rem !important;
+    font-weight: 900 !important;
+    letter-spacing: 2px !important;
+}
+
+.tip-input-group {
+    gap: 12px !important;
+}
+
+.tip-input-group .newspaper-input {
+    padding: 14px 18px !important;
+    font-size: 1.1rem !important;
+    font-weight: bold !important;
+}
+
+.tip-input-group .btn-newspaper {
+    padding: 14px 30px !important;
+    font-size: 1.2rem !important;
+    white-space: nowrap !important;
+}
+
+.suspect-card {
+    width: auto !important;
+    min-width: 180px !important;
+    max-width: 220px !important;
+    flex: 0 1 auto !important;
+}
+
+.player-cards-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 20px !important;
+    padding: 30px 20px !important;
+    justify-content: center !important;
+    max-width: 100% !important;
+}
+
+.player-trading-card {
+    flex: 0 0 auto !important;
+    width: 220px !important;
+    height: 300px !important;
+    perspective: 1000px !important;
+    cursor: pointer !important;
+    transition: transform 0.3s ease !important;
+}
+
+.player-trading-card:hover {
+    transform: translateY(-5px) !important;
+}
+
+.player-trading-card .card-inner {
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
+    transform-style: preserve-3d !important;
+    transition: transform 0.6s !important;
+}
+
+.player-trading-card.flipped .card-inner {
+    transform: rotateY(180deg) !important;
+}
+
+.player-trading-card .card-front,
+.player-trading-card .card-back {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    backface-visibility: hidden !important;
+    border: 5px solid var(--newspaper-black) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4) !important;
+    overflow: hidden !important;
+}
+
+.player-trading-card .card-front {
+    background: linear-gradient(180deg, #f5f5f5 0%, #e0e0e0 100%) !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.player-trading-card .card-back {
+    transform: rotateY(180deg) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 25px 20px !important;
+}
+
+.player-trading-card .card-back.imposter {
+    background: linear-gradient(135deg, #d62828 0%, #8b0000 100%) !important;
+}
+
+.player-trading-card .card-back.crewmate {
+    background: linear-gradient(135deg, #4CAF50 0%, #2e7d32 100%) !important;
+}
+
+.player-trading-card .card-border {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%) !important;
+    padding: 0 !important;
+}
+
+.player-trading-card .card-header {
+    background: linear-gradient(90deg, var(--retro-orange) 0%, var(--newspaper-yellow) 100%) !important;
+    padding: 8px 12px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    border-bottom: 3px solid var(--newspaper-black) !important;
+}
+
+.player-trading-card .card-number {
+    background: var(--newspaper-black) !important;
+    color: white !important;
+    padding: 3px 8px !important;
+    font-size: 0.85rem !important;
+    font-weight: 900 !important;
+    font-family: 'Impact', sans-serif !important;
+    border-radius: 3px !important;
+}
+
+.player-trading-card .card-badge {
+    background: white !important;
+    color: var(--newspaper-black) !important;
+    padding: 3px 8px !important;
+    font-size: 0.85rem !important;
+    font-weight: 900 !important;
+    font-family: 'Impact', sans-serif !important;
+    border-radius: 3px !important;
+    border: 2px solid var(--newspaper-black) !important;
+}
+
+.player-trading-card .card-avatar-container {
+    flex: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 15px !important;
+    background: white !important;
+}
+
+.player-trading-card .card-avatar {
+    width: 140px !important;
+    height: 140px !important;
+    border-radius: 50% !important;
+    border: 5px solid var(--newspaper-black) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.player-trading-card .card-footer {
+    background: var(--newspaper-black) !important;
+    padding: 12px 10px !important;
+    text-align: center !important;
+    border-top: 3px solid var(--retro-orange) !important;
+}
+
+.player-trading-card .card-logo {
+    display: none !important;
+}
+
+.player-trading-card .card-name {
+    font-family: 'Impact', sans-serif !important;
+    font-size: 1.15rem !important;
+    font-weight: 900 !important;
+    color: var(--newspaper-yellow) !important;
+    letter-spacing: 0.5px !important;
+    margin: 0 0 3px 0 !important;
+    word-wrap: break-word !important;
+    line-height: 1.1 !important;
+    text-transform: uppercase !important;
+    overflow-wrap: break-word !important;
+    hyphens: auto !important;
+}
+
+.player-trading-card .card-subtitle {
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.7rem !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+}
+
+.player-trading-card .card-back .role-reveal-title {
+    font-family: 'Impact', sans-serif !important;
+    font-size: 2rem !important;
+    font-weight: 900 !important;
+    color: white !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    margin-bottom: 30px !important;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6) !important;
+    line-height: 1 !important;
+}
+
+.player-trading-card .card-back.crewmate .role-reveal-title {
+    margin-top: 30px !important;
+}
+
+.player-trading-card .card-back .role-reveal-content {
+    background: rgba(0, 0, 0, 0.5) !important;
+    border: 5px solid rgba(255, 255, 255, 0.7) !important;
+    border-radius: 15px !important;
+    padding: 30px 20px !important;
+    width: 100% !important;
+    max-width: 90% !important;
+}
+
+.player-trading-card .card-back .role-label {
+    font-family: 'Courier New', monospace !important;
+    font-size: 1rem !important;
+    font-weight: 900 !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    margin-bottom: 15px !important;
+}
+
+.player-trading-card .card-back .role-value {
+    font-family: 'Impact', sans-serif !important;
+    font-size: 1.3rem !important;
+    font-weight: 900 !important;
+    color: white !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6) !important;
+    line-height: 1.3 !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+.player-trading-card .card-back .tap-instruction {
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.75rem !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    margin-top: 20px !important;
+    text-align: center !important;
+}
+
+.newspaper-gameover {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px;
+}
+
+.newspaper-headline-large {
+    font-size: 4rem;
+    font-weight: 900;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    color: var(--retro-red);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.wanted-poster {
+    background: linear-gradient(180deg, #f4e8d8 0%, #e8dcc4 100%);
+    border: 8px solid var(--newspaper-black);
+    padding: 30px;
+    margin: 30px auto;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.wanted-header {
+    font-size: 3.5rem;
+    font-weight: 900;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    text-align: center;
+    color: var(--retro-red);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+}
+
+.wanted-subtitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--newspaper-black);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.wanted-photo-frame {
+    width: 280px;
+    height: 280px;
+    margin: 0 auto 20px;
+    border: 6px solid var(--newspaper-black);
+    background: #fff;
+    padding: 10px;
+}
+
+.wanted-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wanted-name {
+    font-size: 2.5rem;
+    font-weight: 900;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    text-align: center;
+    color: var(--newspaper-black);
+    margin: 20px 0 10px;
+    letter-spacing: 2px;
+}
+
+.wanted-crime {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--retro-red);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.wanted-divider {
+    height: 4px;
+    background: var(--newspaper-black);
+    margin: 20px 0;
+}
+
+.wanted-details {
+    margin-top: 20px;
+}
+
+.detail-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding: 10px;
+    background: rgba(255, 215, 0, 0.1);
+    border-left: 4px solid var(--retro-red);
+}
+
+.detail-label {
+    font-weight: 900;
+    color: var(--newspaper-black);
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+.detail-value {
+    font-weight: 900;
+    color: var(--retro-red);
+    font-size: 1.1rem;
+}
+
+.secret-reveal {
+    font-size: 1.4rem !important;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+}
+
+.case-closed-banner {
+    background: var(--retro-red);
+    padding: 20px;
+    text-align: center;
+    margin: 30px 0;
+    border: 4px solid var(--newspaper-black);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.case-closed-text {
+    font-size: 2.5rem;
+    font-weight: 900;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.gameover-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.gameover-actions .btn-newspaper {
+    font-size: 1.3rem;
+    padding: 16px 40px;
+    background: var(--retro-red) !important;
+    border-color: var(--newspaper-black);
+}
+
+.gameover-actions .btn-newspaper:hover {
+    background: var(--newspaper-yellow) !important;
+    transform: translateY(-3px);
+}
+
+.tactical-body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+.tactical-container {
+    max-width: 700px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.game-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.game-title {
+    font-size: 4rem;
+    font-weight: 900;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    color: var(--newspaper-yellow);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+    text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.game-subtitle {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.tactical-card {
+    background: linear-gradient(135deg, #2B2B2B 0%, #1A1A1A 100%);
+    border: 6px solid var(--newspaper-yellow);
+    padding: 50px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8);
+}
+
+.tactical-card label {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: cyan;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+}
+
+.tactical-card .cyber-input {
+    width: 100%;
+    padding: 20px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    background: var(--newspaper-yellow);
+    border: 4px solid var(--newspaper-black);
+    color: var(--newspaper-black);
+    font-family: 'Courier New', monospace;
+}
+
+.tactical-card .cyber-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px var(--retro-orange);
+}
+
+.tactical-card .cyber-input::placeholder {
+    color: rgba(26, 26, 26, 0.5);
+}
+
+.tactical-card .btn-neon {
+    width: 100%;
+    padding: 22px;
+    font-size: 1.6rem;
+    font-weight: 900;
+    background: var(--retro-orange);
+    border: 4px solid var(--newspaper-black);
+    color: var(--newspaper-black);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    letter-spacing: 3px;
+    margin-top: 25px;
+}
+
+.tactical-card .btn-neon:hover {
+    background: var(--newspaper-yellow);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 0 var(--newspaper-black);
+}
+
+@media (max-width: 768px) {
+    .suspect-grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 12px !important;
+        overflow-x: visible !important;
+    }
+
+    .suspect-card {
+        min-width: auto !important;
+        max-width: none !important;
+        padding: 10px !important;
+        width: 100% !important;
+    }
+
+    .suspect-name {
+        font-size: 0.9rem !important;
+        word-wrap: break-word !important;
+    }
+
+    .suspect-number {
+        font-size: 0.7rem !important;
+        padding: 3px 6px !important;
+    }
+
+    .mugshot-frame {
+        padding: 6px !important;
+    }
+
+    .mugshot-photo {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .wanted-poster {
+        padding: 20px;
+    }
+
+    .wanted-header {
+        font-size: 2.5rem;
+    }
+
+    .wanted-photo-frame {
+        width: 200px;
+        height: 200px;
+    }
+
+    .newspaper-headline-large {
+        font-size: 2.5rem;
+    }
+
+    .config-label {
+        font-size: 1.2rem;
+    }
+
+    .btn-topic, .btn-mode {
+        font-size: 1rem;
+        padding: 12px 20px;
+    }
+
+    .player-trading-card {
+        width: 200px !important;
+        height: 270px !important;
+    }
+
+    .player-trading-card .card-avatar {
+        width: 120px !important;
+        height: 120px !important;
+    }
+
+    .player-trading-card .card-name {
+        font-size: 1.1rem !important;
+    }
+
+    .player-trading-card .card-logo {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 1rem !important;
+    }
+
+    .player-trading-card .card-back .role-reveal-title {
+        font-size: 2.3rem !important;
+    }
+
+    .player-trading-card .card-back .role-value {
+        font-size: 1.8rem !important;
+    }
+
+    .player-cards-grid {
+        gap: 15px !important;
+        padding: 20px 15px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .suspect-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .player-trading-card {
+        width: 180px !important;
+        height: 240px !important;
+    }
+
+    .player-trading-card .card-avatar {
+        width: 100px !important;
+        height: 100px !important;
+    }
+
+    .player-trading-card .card-name {
+        font-size: 0.95rem !important;
+    }
+
+    .player-trading-card .card-logo {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.9rem !important;
+    }
+
+    .player-trading-card .card-number,
+    .player-trading-card .card-badge {
+        font-size: 0.7rem !important;
+        padding: 2px 6px !important;
+    }
+
+    .player-trading-card .card-back .role-reveal-title {
+        font-size: 2rem !important;
+    }
+
+    .player-trading-card .card-back .role-value {
+        font-size: 1.5rem !important;
+    }
+
+    .player-cards-grid {
+        gap: 12px !important;
+        padding: 15px 10px !important;
+    }
+}

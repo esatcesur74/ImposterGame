@@ -1,0 +1,98 @@
+@{
+    ViewData["Title"] = "Imposter Game";
+}
+
+<div class="game-container">
+    <div class="cyber-card">
+        <h1 class="cyber-title">IMPOSTER GAME</h1>
+
+        <div class="game-options">
+            
+            <form asp-action="Create" method="post" class="option-form">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn-neon btn-large">
+                    LOCAL PLAY
+                </button>
+            </form>
+
+            
+            <div class="remote-options">
+                <button type="button" class="btn-neon btn-large" id="createRemoteBtn">
+                    CREATE REMOTE LOBBY
+                </button>
+
+                <button type="button" class="btn-neon btn-large" id="remotePlayBtn">
+                    JOIN REMOTE LOBBY
+                </button>
+            </div>
+        </div>
+
+        
+        <div id="createRemoteForm" class="remote-form" style="display: none;">
+            <h3>CREATE REMOTE LOBBY</h3>
+            <form asp-action="CreateRemote" method="post">
+                @Html.AntiForgeryToken()
+                <input type="text" name="hostName" class="cyber-input" placeholder="Enter your nickname" required />
+                <button type="submit" class="btn-neon btn-neon-primary">Create Lobby</button>
+            </form>
+        </div>
+
+        
+        <div id="remotePlayForm" class="remote-form" style="display: none;">
+            <h3>JOIN REMOTE GAME</h3>
+            <form asp-action="Join" method="get" id="joinGameForm">
+                <input type="text" name="id" class="cyber-input" placeholder="Enter game code" required />
+                <button type="submit" class="btn-neon btn-neon-primary">Join Game</button>
+            </form>
+        </div>
+
+        
+        @if (TempData["Error"] is string error)
+        {
+            <div class="alert-error" style="margin-top: 20px;">
+                <span>@error</span>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log('JavaScript loaded!');
+        console.log('createRemoteBtn:', document.getElementById('createRemoteBtn'));
+        console.log('remotePlayBtn:', document.getElementById('remotePlayBtn'));
+
+        const createRemoteBtn = document.getElementById('createRemoteBtn');
+        const createRemoteForm = document.getElementById('createRemoteForm');
+        const remotePlayBtn = document.getElementById('remotePlayBtn');
+        const remotePlayForm = document.getElementById('remotePlayForm');
+
+        if (createRemoteBtn && createRemoteForm) {
+            console.log('Attaching click handler to createRemoteBtn');
+            createRemoteBtn.addEventListener('click', function () {
+                console.log('CREATE REMOTE LOBBY clicked!');
+                if (createRemoteForm.style.display === 'none' || createRemoteForm.style.display === '') {
+                    createRemoteForm.style.display = 'block';
+                    if (remotePlayForm) remotePlayForm.style.display = 'none';
+                } else {
+                    createRemoteForm.style.display = 'none';
+                }
+            });
+        }
+
+        if (remotePlayBtn && remotePlayForm) {
+            console.log('Attaching click handler to remotePlayBtn');
+            remotePlayBtn.addEventListener('click', function () {
+                console.log('JOIN REMOTE LOBBY clicked!');
+                if (remotePlayForm.style.display === 'none' || remotePlayForm.style.display === '') {
+                    remotePlayForm.style.display = 'block';
+                    if (createRemoteForm) createRemoteForm.style.display = 'none';
+                } else {
+                    remotePlayForm.style.display = 'none';
+                }
+            });
+        }
+    });
+</script>
+
+<script src="~/js/new.js" asp-append-version="true"></script>

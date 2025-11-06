@@ -1,0 +1,64 @@
+@model ImposterGame.ViewModels.EndGameViewModel
+
+@{
+    ViewData["Title"] = "Case Closed";
+    var imposterAvatar = $"https://api.dicebear.com/7.x/avataaars/svg?seed={Uri.EscapeDataString(Model.ImposterName)}&backgroundColor=b91c1c";
+    var topicLabel = Model.SelectedTopic switch
+    {
+        Topic.FootballPlayers => "FOOTBALL PLAYER",
+        Topic.Jobs => "JOB",
+        Topic.Countries => "COUNTRY",
+        _ => "TARGET"
+    };
+}
+
+<div class="game-container">
+    <div class="cyber-card newspaper-gameover">
+        
+        <div class="newspaper-masthead">
+            <div class="newspaper-date">CASE CLOSED - SEASON 2025</div>
+            <h1 class="newspaper-headline-large">MYSTERY SOLVED!</h1>
+            <div class="newspaper-subheadline">
+                IMPOSTER IDENTITY REVEALED IN SHOCKING TURN OF EVENTS
+            </div>
+        </div>
+
+       
+        <div class="wanted-poster">
+            <div class="wanted-header">WANTED</div>
+            <div class="wanted-subtitle">FOR IMPERSONATION</div>
+            
+            <div class="wanted-photo-frame">
+                <img src="@imposterAvatar" alt="@Model.ImposterName" class="wanted-photo" />
+            </div>
+            
+            <div class="wanted-name">@Model.ImposterName.ToUpper()</div>
+            <div class="wanted-crime">THE IMPOSTER</div>
+            
+            <div class="wanted-divider"></div>
+            
+            <div class="wanted-details">
+                <div class="detail-line">
+                    <span class="detail-label">CRIME:</span>
+                    <span class="detail-value">Impersonation</span>
+                </div>
+                <div class="detail-line">
+                    <span class="detail-label">SECRET @topicLabel:</span>
+                    <span class="detail-value secret-reveal">@Model.SecretPlayerName</span>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="case-closed-banner">
+            <span class="case-closed-text">⚖️ CASE CLOSED ⚖️</span>
+        </div>
+
+        
+        <div class="gameover-actions">
+            <a asp-action="Lobby" asp-route-id="@Model.GameId" class="btn-newspaper btn-wanted btn-large">
+                Return to Lobby
+            </a>
+        </div>
+    </div>
+</div>

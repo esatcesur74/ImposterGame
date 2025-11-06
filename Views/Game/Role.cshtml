@@ -1,0 +1,92 @@
+@model ImposterGame.ViewModels.RoleViewModel
+
+@{
+    ViewData["Title"] = "Your Role";
+    bool isImposter = false;
+    string playerName = "";
+    string secret = "";
+
+    
+    dynamic vm = Model;
+    isImposter = vm.IsImposter;
+    playerName = vm.PlayerName;
+    if (!isImposter)
+    {
+        secret = Model.Secret;
+    }
+}
+
+<div class="game-container">
+    <div class="cyber-card role-reveal-container">
+        <h1 class="cyber-title">ROLE REVEAL</h1>
+
+        <div class="role-card-wrapper">
+            <div class="role-trading-card" id="roleCard">
+                
+                <div class="role-card-front">
+                    <div class="card-border">
+                        <div class="card-header">
+                            <span class="card-number">??/25</span>
+                            <span class="card-badge">RC</span>
+                        </div>
+                        <div class="card-avatar-container">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=@Uri.EscapeDataString(playerName)&backgroundColor=4CAF50"
+                                 alt="@playerName"
+                                 class="card-avatar" />
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-logo">IG</div>
+                            <div class="card-name">@playerName.ToUpper()</div>
+                            <div class="card-subtitle">SEASON 2025</div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="role-card-back @(isImposter ? "imposter" : "crewmate")">
+                    @if (isImposter)
+                    {
+                        <h2 class="role-reveal-title">IMPOSTER</h2>
+                        <div class="role-reveal-content">
+                            <div class="role-label">Your Mission</div>
+                            <div class="role-value">ELIMINATE</div>
+                        </div>
+                    }
+                    else
+                    {
+                        <h2 class="role-reveal-title">CREWMATE</h2>
+                        <div class="role-reveal-content">
+                            <div class="role-label">Secret Player</div>
+                            <div class="role-value">@secret</div>
+                        </div>
+                    }
+                    <p class="tap-instruction">Tap card to flip back</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="role-actions">
+            <a asp-action="Play" asp-route-id="@Model.GameId" class="btn-neon">Back to Player List</a>
+        </div>
+
+        <p class="tap-instruction" style="margin-top: 20px;">Tap the card to reveal your role</p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const roleCard = document.getElementById('roleCard');
+
+        if (roleCard) {
+            
+            setTimeout(function() {
+                roleCard.classList.add('flipped');
+            }, 300);
+
+            
+            roleCard.addEventListener('click', function() {
+                this.classList.toggle('flipped');
+            });
+        }
+    });
+</script>

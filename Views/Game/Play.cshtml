@@ -1,0 +1,116 @@
+@model ImposterGame.ViewModels.PlayViewModel
+@{
+    ViewData["Title"] = "Select Your Name";
+}
+
+<div class="game-container">
+    <div class="cyber-card">
+        <h1 class="cyber-title">SELECT YOUR CARD</h1>
+
+        @if (TempData["Error"] is string err)
+        {
+            <div class="alert-error">
+                @err
+            </div>
+        }
+
+        <div class="player-cards-grid">
+    @foreach (var (player, index) in Model.Players.Select((p, i) => (p, i)))
+    {
+        var isImposter = Model.ImposterPlayerId == player.Id;
+        
+        <div class="player-trading-card" 
+             data-is-imposter="@isImposter.ToString().ToLower()" 
+             data-secret="@Model.Secret"
+             onclick="flipCard(this)">
+            <div class="card-inner">
+                
+                <div class="card-front">
+                    <div class="card-border">
+                        <div class="card-header">
+                            <span class="card-number">@(index + 1)/25</span>
+                            <span class="card-badge">RC</span>
+                        </div>
+                        <div class="card-avatar-container">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=@Uri.EscapeDataString(player.DisplayName)&backgroundColor=4CAF50"
+                                 alt="@player.DisplayName"
+                                 class="card-avatar" />
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-logo">IG</div>
+                            <div class="card-name">@player.DisplayName.ToUpper()</div>
+                            <div class="card-subtitle">SEASON 2025</div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="card-back @(isImposter ? "imposter" : "crewmate")">
+                    @if (isImposter)
+                    {
+                        <h2 class="role-reveal-title">IMPOSTER</h2>
+                        <div class="role-reveal-content">
+                            <div class="role-label">Your Mission</div>
+                            <div class="role-value">ELIMINATE</div>
+                        </div>
+                    }
+                    else
+                    {
+                        <h2 class="role-reveal-title">CREWMATE</h2>
+                        <div class="role-reveal-content">
+                            <div class="role-label">Secret Player</div>
+                            <div class="role-value">@Model.Secret</div>
+                        </div>
+                    }
+                    <p class="tap-instruction">Tap card to flip back</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+        <div class="game-actions">
+            <form asp-action="EndGame" asp-route-id="@Model.GameId" method="post" style="display: inline;">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn-neon btn-neon-primary">End Game</button>
+            </form>
+            <a asp-action="Lobby" asp-route-id="@Model.GameId" class="btn-neon">Back to Lobby</a>
+        </div>
+    </div>
+</div>
+
+<script>
+function flipCard(card) {
+    card.classList.toggle('flipped');
+}
+</script>
+@if (Model.Mode == GameMode.Remote)
+{
+    <script>
+    (function() {
+        const gameId = '@Model.GameId';
+        let previousStatus = '@Model.Status.ToString()';
+        
+        async function checkGameStatus() {
+            try {
+                const response = await fetch(`/Game/GetLobbyData?id=${gameId}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    // If status changed from Started to Ended, redirect to GameOver
+                    if (data.status === 'Ended' && previousStatus !== 'Ended') {
+                        console.log('Game ended! Redirecting to reveal page...');
+                        window.location.href = `/Game/GameOver/${gameId}`;
+                    }
+                    previousStatus = data.status;
+                }
+            } catch (error) {
+                console.error('Error checking game status:', error);
+            }
+        }
+        
+        // Check every 3 seconds
+        setInterval(checkGameStatus, 3000);
+    })();
+    </script>
+}
