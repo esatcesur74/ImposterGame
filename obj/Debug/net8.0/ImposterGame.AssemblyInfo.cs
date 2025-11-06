@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ImposterGame")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3dd8e644bb4ba89811df0d23693107af13913d20")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6c0dcf2578986fe1f0595216cafcd5d01c1967b5")]
 [assembly: System.Reflection.AssemblyProductAttribute("ImposterGame")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ImposterGame")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
