@@ -19,7 +19,7 @@ A social deduction web game built with ASP.NET Core MVC where players try to ide
   - Jobs
   - Countries
 
-- **Beautiful UI**
+- ** UI**
   - Newspaper-themed lobby design
   - Footballer trading card-style role reveals
   - Retro/cyberpunk aesthetic
@@ -71,6 +71,8 @@ A social deduction web game built with ASP.NET Core MVC where players try to ide
    https://localhost:5001
    ```
 
+   
+
 ## How to Play
 
 ### Local Mode
@@ -90,6 +92,8 @@ A social deduction web game built with ASP.NET Core MVC where players try to ide
 5. Select a topic and start the game
 6. Each player views their role on their own device
 7. Discuss and find the imposter!
+
+For remote mode all the players need to be in same network in order to play.
 
 ## Project Structure
 
